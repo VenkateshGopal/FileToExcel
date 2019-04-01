@@ -1,0 +1,5 @@
+select case when STATUS_CREATE_DATETIME is null then 'N/A' else to_char(STATUS_CREATE_DATETIME,'MON DD YYYY') end as "CreationDate" , case when STATUS_VALUE_DATE is null then 'N/A' else to_char( 'MON DD YYYY') end as "Value Date", to_char(ORIGINAL_VALUE_DATE,'dd Mon yy') as "OriginalValueDate", to_char(TRANS_CREATION_DATE, 'YYYY dd Mon') as "TranOriginalDAte" from TRANSACTION_SET where TRANSACTION_SET_ID in (select TRANSACTION_SET_ID from FUNC_GROUP_TRANS_SET where FUNCTIONAL_GROUP_ID='1641769');
+
+
+replace((case when lbx_lockbox.lo_expiry_date is null then to_char(to_date('01/01/01' ,'DD-MM-YY'), 'dd Mon yy') 
+else to_char(lbx_lockbox.lo_expiry_date, 'dd Mon yy') end), '01 Jan 01', 'N/A') as "Expiry Date",
